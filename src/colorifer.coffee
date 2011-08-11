@@ -13,16 +13,13 @@ class Colorifer extends Element
       gutter: true         # show or not the gutter
 
     # mass-initializer
-    initialize: (element)->
-      if element && (element = $(element))
-        element = element[0] if element instanceof $.Search
+    initialize: ()->
+      $("#{Colorifer.Options.tag}[#{Colorifer.Options.attr}]").forEach (element)->
         if lang = element.attr(Colorifer.Options.attr)
           if color = Colorifer[lang]
             if !element._color
               element._color = new color(element);
-      else
-        $("#{Colorifer.Options.tag}[#{Colorifer.Options.attr}]"
-        ).forEach Colorifer.initialize
+      return #
 
 
   # fallback markers

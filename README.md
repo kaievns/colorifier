@@ -17,6 +17,7 @@ will automatically search for things like that
 
 There are a bunch of options you might change if you like
 
+    :javascript
     Lovely(['colorifer'], function(Colorifer) {
       Colorifer.Options.tag  = 'pre'; // the tag name of the target elements
       Colorifer.Options.attr = 'data-lang'; // the attribute with language
