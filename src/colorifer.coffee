@@ -39,6 +39,8 @@ class Colorifer extends Element
   # @return {Colorifer} new
   #
   constructor: (element)->
+    return @ unless element
+
     super 'div', class: 'colorifer'
 
     text = element.html()
@@ -157,7 +159,7 @@ class Colorifer extends Element
 
   # rollbacks the comments, strings and regexps prereplacements
   _rollback: (text)->
-    for token, i in @___
-      text = text.replace("___dummy_#{i+1}___", token)
+    for i in [@___.length - 1..0]
+      text = text.replace("___dummy_#{i+1}___", @___[i])
 
     text

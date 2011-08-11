@@ -21,6 +21,7 @@ escape = (str)->
 include 'src/colorifer'
 include 'src/lang/javascript'
 include 'src/lang/css'
+include 'src/lang/html'
 
 $(Colorifer.initialize); # kick in when page's loaded
 

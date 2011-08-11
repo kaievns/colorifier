@@ -8,13 +8,14 @@ Colorifer.css = Colorifer.sass = new Class Colorifer,
   comments: "/* */"
   booleans: "collapse,solid,dotted,dashed,none,auto,url,any,block,normal,"+
             "italic,bold,unerline,inherit,inline,inline-block,inset,outset,"+
-            "hidden,visible,no-repeat,center,left,top,bottom,right"
+            "hidden,visible,no-repeat,center,left,top,bottom,right,rgb,rgba"
 
   paint: (text)->
     text = @_comments(text)
     text = @_strings(text)
     text = @_properties(text)
     text = @_numbers(text)
+    text = @_colors(text)
     text = @_keywords(text)
     text = @_selectors(text)
 
@@ -40,4 +41,9 @@ Colorifer.css = Colorifer.sass = new Class Colorifer,
   _numbers: (text)->
     @_prepare(text, [
       [/([^'"\d\w\.])(\-?[0-9]*\.?[0-9]+[a-z]*)(?!['"\d\w\.])/g, "integer",   "$1 "]
+    ])
+
+  _colors: (text)->
+    @_prepare(text, [
+      [/(.)(#(([abcdef0-9]{3})|([abcdef0-9]{6})))/g, "regexp", "$1 "]
     ])
