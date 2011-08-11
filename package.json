@@ -1,7 +1,10 @@
 {
   "name":        "colorifer",
-  "version":     "0.0.0",
-  "description": "My super lovely module",
+  "version":     "1.0.0",
+  "description": "Code highlighting script",
   "author":      "Nikolay Nemshilov",
-  "license":     "MIT"
+  "license":     "MIT",
+  "dependencies": {
+    "dom": "1.0.0"
+  }
 }
