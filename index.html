@@ -14,43 +14,44 @@
     <h1>Colorifer Demo</h1>
 
     <h2>JavaScript Demo</h2>
-    <p>
-      <pre data-lang="javascript">
-        var some = "string";
-        var bool = true;
+<pre data-lang="javascript">
+var some    = "string"; // simple comment
+var bool    = true;     /* true comment */
+var regex   = /som(weird.*\/*?)reg[exp]/;
+var integer = 111;
+var float   = 1.1;
 
-        for (var i=0; i &lt; some.length; i++) {
-          if (bool) {
-            // do some stuff
-          }
-        }
-      </pre>
-    </p>
+function boo_hoo(tro, lo, l0) {
+  for (var i=0; i < some.length; i++) {
+    if (bool) {
+      tro = new Number(lo + l0);
+    }
+  }
+
+  return tro.lo() + l0;
+}
+</pre>
 
     <h2>CSS Demo</h2>
-    <p>
-      <pre data-lang="css">
-        #boo-hoo {
-          border: 1px solid brown;
-        }
-      </pre>
-    </p>
+<pre data-lang="css">
+#boo-hoo {
+  border: 1px solid brown;
+}
+</pre>
 
     <h2>HTML Demo</h2>
-    <p>
-      <pre data-lang="html">
-        &lt;div id="boo-hoo"&gt;
-          Some text
-        &lt;/div&gt;
-        &lt;script type="text/javascript"&gt;
-          var some = "string";
-        &lt;/script&gt;
-        &lt;style type="text/css"&gt;
-          #boo-hoo {
-            border: 1px solid #ddd;
-          }
-        &lt;/style&gt;
-      </pre>
-    </p>
+<pre data-lang="html">
+&lt;div id="boo-hoo">
+  Some text
+&lt;/div>
+&lt;script type="text/javascript">
+  var some = "string";
+&lt;/script>
+&lt;style type="text/css">
+  #boo-hoo {
+    border: 1px solid #ddd;
+  }
+&lt;/style>
+</pre>
   </body>
 </html>

@@ -5,3 +5,64 @@
 //
 // Copyright (C) 2011 Nikolay Nemshilov
 //
+
+div.colorifer, div.colorifer *
+  display:    inline
+  margin:     0
+  padding:    0
+  border:     none
+  background: none
+  float:      none
+  font:       inherit
+  position:   static
+  top:        auto
+  left:       auto
+  right:      auto
+  bottom:     auto
+
+div.colorifer
+  display:    block
+
+  position:   relative
+
+
+  // default color scheme
+
+  &.default
+    color:      rgba(0,0,0,0.8)
+    background: rgba(255,255,255,0.9)
+
+    span.comment
+      color: rgba(0,0,0,0.4)
+
+    span.string
+      color: #080
+
+    span.regexp
+      color: #880
+
+    span.integer
+      color: rgb(0,0,255)
+
+    span.float
+      color: rgb(176,42,42)
+
+    span.keyword
+      font-weight: bold
+      color:       #808
+
+    span.object
+      color:       #EE82EE
+      font-weight: bold
+
+    span.boolean
+      color: rgb(176,42,42)
+
+    span.unit
+      color: #088
+
+    span.attribute
+      color: #880
+
+    span.method
+      color: #008
