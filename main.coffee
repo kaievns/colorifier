@@ -22,6 +22,7 @@ include 'src/colorifer'
 include 'src/lang/javascript'
 include 'src/lang/css'
 include 'src/lang/html'
+include 'src/lang/coffeescript'
 
 $(Colorifer.initialize); # kick in when page's loaded
 

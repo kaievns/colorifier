@@ -60,6 +60,27 @@ div#boo-hoo .to[lo="lo"] span {
 &lt;/style>
 </pre>
 
+    <h2>CoffeeScript</h2>
+<pre data-lang="coffee">
+#
+# Some dummy class
+#
+class Boo extends Hoo
+  constructor: (boo, hoo)->
+    super(boo, hoo)
+
+    for i in boo where i > 1
+      for j of hoo
+        @something = j + i
+
+    re   = /some|regexp/
+    num  = 1.0 + 11
+    none = null || undefined || false
+
+    return @method(@something)
+
+</pre>
+
     <p class="white-space"></p>
   </body>
 </html>

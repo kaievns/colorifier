@@ -58,15 +58,18 @@ class Colorifer extends Element
   # Paints the code according to the rules
   #
   # @param {String} original
+  # @param {Function} additional callback
   # @return {String} painted
   #
-  paint: (text)->
+  paint: (text, callback)->
     text = @_comments(text)
     text = @_strings(text)
     text = @_regexps(text)
     text = @_numbers(text)
     text = @_keywords(text)
     text = @_methods(text)
+
+    text = callback.call(@, text) if callback
 
     @_rollback(text)
 
