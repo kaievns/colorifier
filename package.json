@@ -4,6 +4,7 @@
   "description": "Code highlighting script",
   "author":      "Nikolay Nemshilov",
   "license":     "MIT",
+  "home_url":    "https://github.com/MadRabbit/colorifer",
   "dependencies": {
     "dom": "1.0.0"
   }
