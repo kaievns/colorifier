@@ -20,6 +20,7 @@ escape = (str)->
 # glue in your files
 include 'src/colorifer'
 include 'src/lang/javascript'
+include 'src/lang/css'
 
 $(Colorifer.initialize); # kick in when page's loaded
 
