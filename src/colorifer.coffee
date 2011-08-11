@@ -7,9 +7,10 @@ class Colorifer extends Element
   extend:
     # Default options
     Options:
-      tag:    'pre'
-      attr:   'data-lang'
-      scheme: 'default'
+      tag:    'pre'        # tag name of the elements to process
+      attr:   'data-lang'  # attribute that keeps the language name
+      scheme: 'default'    # colorscheme name
+      gutter: true         # show or not the gutter
 
     # mass-initializer
     initialize: (element)->
@@ -51,8 +52,16 @@ class Colorifer extends Element
     @ref = element.html(this.paint(text))
 
     @style(element.style("font-family font-size font-weight"))
-    @insertTo(element, 'before').insert(element)
+    @insertTo(element, 'before')
+
+    if Colorifer.Options.gutter
+      nums = (i for line, i in text.split("\n"))
+      @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
+
+    @insert(new Element('div', class: 'code').insert(element))
     @addClass(Colorifer.Options.scheme)
+
+
 
   #
   # Paints the code according to the rules

@@ -22,9 +22,25 @@ div.colorifer, div.colorifer *
 
 div.colorifer
   display:    block
-
   position:   relative
+  border: 1px solid rgba(0,0,0,0.1)
+  border-radius: .5em
+  white-space: nowrap
+  min-width:  30em
 
+  .gutter, .code
+    display: inline-block
+    vertical-align: top
+    padding: .25em .5em
+
+  .gutter
+    border-right: 2px solid rgba(80,0,0,0.5)
+    text-align: right
+    background: rgba(0,0,0,0.025)
+
+  .code
+    overflow: hidden
+    max-width: 90%
 
   // default color scheme
 
@@ -62,7 +78,10 @@ div.colorifer
       color: #088
 
     span.attribute
-      color: #048
+      color: #880
 
     span.method
       color: #008
+
+    span.property
+      color: #048
