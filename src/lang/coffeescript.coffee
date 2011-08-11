@@ -11,8 +11,9 @@ Colorifer.coffee = Colorifer.coffeescript = new Class Colorifer,
   booleans: "true,false,null,undefined"
 
   paint: (text)->
-    text = @$super text, (text)->
-      text.replace /(^|.)(@[a-z0-9_]+)/ig, (m, _1, _2)->
+    @$super text, (text)->
+      text = text.replace /(^|.)(@[a-z0-9_]+)/ig, (m, _1, _2)->
         "#{_1}<span class=\"property\">#{_2}</span>"
 
-    # painting object properties
+      text.replace /(^|[^a-z0-9_])([a-z0-9_]+)(\s*:)/ig, (m, _1, _2, _3)->
+        "#{_1}<span class=\"attribute\">#{_2}</span>#{_3}"
