@@ -26,7 +26,7 @@ class Colorifer extends Element
 
   # fallback markers
   comments: ""
-  strings:  ""
+  strings:  "',\""
   keywords: ""
   objects:  ""
   booleans: ""
@@ -41,10 +41,16 @@ class Colorifer extends Element
   constructor: (element)->
     super 'div', class: 'colorifer'
 
-    @ref = element.html(this.paint(element.html()))
+    text = element.html()
+    text = text.replace(/</g, '&lt;')
+    text = text.replace(/>/g, '&gt;')
+    text = text.replace(/(^\s+)|(\s+$)/g, '')
 
-    @style(@ref.style("font-family font-size font-weight"))
-    @insertTo(@ref, 'before').insert(@ref).addClass(Colorifer.Options.scheme)
+    @ref = element.html(this.paint(text))
+
+    @style(element.style("font-family font-size font-weight"))
+    @insertTo(element, 'before').insert(element)
+    @addClass(Colorifer.Options.scheme)
 
   #
   # Paints the code according to the rules
@@ -53,23 +59,21 @@ class Colorifer extends Element
   # @return {String} painted
   #
   paint: (text)->
-    text = text.replace(/</g, '&lt;')
-    text = text.replace(/>/g, '&gt;')
-    text = text.replace(/(^\s+)|(\s+$)/g, '')
+    text = @_comments(text)
+    text = @_strings(text)
+    text = @_regexps(text)
+    text = @_numbers(text)
+    text = @_keywords(text)
+    text = @_methods(text)
 
-    text = @_comments(text,
-      (text)-> @_strings(text,
-      (text)-> @_regexps(text,
-      (text)-> @_methods(@_keywords(@_numbers(text))))))
-
-    text
+    @_rollback(text)
 
 
 # protected
 
   # painting the comments
   _comments: (text, callback)->
-    comments = []
+    replacements = []
 
     # replacing the comments with dummies
     for token in @comments.split(',')
@@ -80,17 +84,13 @@ class Colorifer extends Element
       else
         regex = new RegExp("(.?)(#{escape(chunks[0])}.*?)(\n)", "g")
 
-      text = text.replace regex, (m, _1, _2, _3)->
-        comments.push("<span class=\"comment\">#{_2}</span>")
-        "#{_1}___comments_#{comments.length}___#{_3}"
+      replacements.push([regex, "comment", "$1 $3"])
 
-    text = callback.call(this, text) if callback
-
-    @_rollback(text, comments, "comments")
+    @_prepare(text, replacements)
 
   # painting the strings
   _strings: (text, callback)->
-    strings = []
+    replacements = []
 
     for token in @strings.split(',')
       regexs = [
@@ -99,61 +99,65 @@ class Colorifer extends Element
       ]
 
       for re in regexs
-        text = text.replace re, (m, _1, _2)->
-          strings.push("<span class=\"string\">#{_2}</span>")
-          "#{_1}___strings_#{strings.length}___"
+        replacements.push([re, "string", "$1 "])
 
-    text = callback.call(this, text) if callback
-
-    @_rollback(text, strings, "strings")
+    @_prepare(text, replacements)
 
   # painting the regexps
   _regexps: (text, callback)->
-    regexps = []
+    replacements = []
 
     for re in @regexps
-      text = text.replace re, (m, _1, _2)->
-        regexps.push("<span class=\"regexp\">#{_2}</span>")
-        "#{_1}___regexps_#{regexps.length}___"
+      replacements.push([re, "regexp", "$1 "])
 
-    text = callback.call(this, text) if callback
+    @_prepare(text, replacements)
 
-    @_rollback(text, regexps, "regexps")
-
-  # rollbacks the comments, strings and regexps prereplacements
-  _rollback: (text, tokens, key)->
-    for token, i in tokens
-      text = text.replace("___#{key}_#{i+1}___", token)
-
-    text
-
+  # painting integers and floats
   _numbers: (text)->
-    text = text.replace /([^'"\d\w\.])([\d]+)(?!['"\d\w\.])/g, (m, _1, _2)->
-      "#{_1}<span class=\"integer\">#{_2}</span>"
-
-    text = text.replace /([^'"\d\w\.])(\d*\.\d+)(?!['"\d\w\.])/g, (m, _1, _2)->
-      "#{_1}<span class=\"float\">#{_2}</span>"
+    @_prepare(text, [
+      [/([^'"\d\w\.])([\d]+)(?!['"\d\w\.])/g,    "integer", "$1 "]
+      [/([^'"\d\w\.])(\d*\.\d+)(?!['"\d\w\.])/g, "float",   "$1 "]
+    ])
 
   # painting the keywords
   _keywords: (text)->
+    reps = []
+
     for name in ['keyword', 'object', 'boolean']
       regexp = @[name + "s"].replace(/,/g, '|')
       regexp = new RegExp("([^a-zA-Z0-9_]|^)(#{regexp})(?![a-zA-Z0-9_])", "g")
 
-      text = text.replace regexp, (m, _1, _2)->
-        "#{_1}<span class=\"#{name}\">#{_2}</span>"
+      reps.push([regexp, name, "$1 "])
 
-    text
+    @_prepare(text, reps)
 
   # painting attributes and methods
   _methods: (text)->
-    text = text.replace /([^a-zA-Z0-9_]|^)([A-Z][a-zA-Z_0-9]+)(?![a-zA-Z0-9_])/, (m, _1, _2)->
-      "#{_1}<span class=\"unit\">#{_2}</span>"
+    @_prepare(text, [
+      [/([^a-zA-Z0-9_]|^)([A-Z][a-zA-Z_0-9]+)(?![a-zA-Z0-9_])/g, "unit",      '$1 ']
+      [/(\.)([a-z_$][a-z0-9_]*)(?![a-z0-9_\(])/ig,               "attribute", '$1 ']
+      [/(\.)([a-z_$][a-z0-9_]*)(\()/i,                           "method",    '$1 $3']
+    ])
 
-    text = text.replace /(\.)([a-z_$][a-z0-9_]*)(?![a-z0-9_\(])/i, (m, _1, _2)->
-      "#{_1}<span class=\"attribute\">#{_2}</span>"
 
-    text = text.replace /(\.)([a-z_$][a-z0-9_]*)(\()/i, (m, _1, _2, _3)->
-      "#{_1}<span class=\"method\">#{_2}</span>#{_3}"
+  # pre-replaces the text-entries with mocks so they didn't mess with the rest
+  _prepare: (text, list)->
+    @___ or= []
+    tokens = @___
+
+    for [re, css, dummy] in list
+      text = text.replace re, (m, _1, _2, _3, _4, _5)->
+        tokens.push("<span class=\"#{css}\">#{_2}</span>")
+        dummy.replace(' ', "___dummy_#{tokens.length}___")
+          .replace('$1', _1).replace('$3', _3).replace('$4', _4)
+
+
+    text
+
+
+  # rollbacks the comments, strings and regexps prereplacements
+  _rollback: (text)->
+    for token, i in @___
+      text = text.replace("___dummy_#{i+1}___", token)
 
     text
