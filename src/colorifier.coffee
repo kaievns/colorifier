@@ -9,7 +9,7 @@ class Colorifier extends Element
     Options:
       tag:    'pre'        # tag name of the elements to process
       attr:   'data-lang'  # attribute that keeps the language name
-      scheme: 'default'    # colorscheme name
+      theme:  'light'      # color theme name
       gutter: true         # show or not the gutter
 
     # mass-initializer
@@ -56,7 +56,7 @@ class Colorifier extends Element
       @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
 
     @insert(new Element('div', class: 'code').insert(element))
-    @addClass(Colorifier.Options.scheme)
+    @addClass(Colorifier.Options.theme)
 
 
 

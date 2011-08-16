@@ -21,7 +21,7 @@ There are a bunch of options you might change if you like
     Lovely(['colorifier'], function(Colorifier) {
       Colorifier.Options.tag    = 'pre';       // the tag name of the target elements
       Colorifier.Options.attr   = 'data-lang'; // the attribute with language
-      Colorifier.Options.scheme = 'default';   // the color scheme to use
+      Colorifier.Options.theme  = 'light';     // the color theme to use ('light' or 'dark')
       Colorifier.Options.gutter = true;        // show/hide the gutter
     });
 
