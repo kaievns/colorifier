@@ -14,9 +14,12 @@
 
           $(document.documentElement).addClass(theme);
         }
-        $('#theme-switch').value(theme);
-        $('#theme-switch').on('change', function() {
-          document.location = document.location.href.split('?')[0] + '?' + this.value();
+
+        $(function() {
+          $('#theme-switch').value(theme);
+          $('#theme-switch').on('change', function() {
+            document.location = document.location.href.split('?')[0] + '?' + this.value();
+          });
         });
       });
     </script>
