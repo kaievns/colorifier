@@ -136,9 +136,11 @@ class Colorifier extends Element
 
     for name in ['keyword', 'object', 'boolean']
       regexp = @[name + "s"].replace(/,/g, '|')
-      regexp = new RegExp("([^a-zA-Z0-9_]|^)(#{regexp})(?![a-zA-Z0-9_])", "g")
 
-      reps.push([regexp, name, "$1 "])
+      if regexp # if it's not empty
+        regexp = new RegExp("([^a-zA-Z0-9_]|^)(#{regexp})(?![a-zA-Z0-9_])", "g")
+
+        reps.push([regexp, name, "$1 "])
 
     @_prepare(text, reps)
 
