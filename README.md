@@ -23,9 +23,9 @@ There are a bunch of options you might change if you like
       Colorifier.Options.attr   = 'data-lang'; // the attribute with language
       Colorifier.Options.theme  = 'light';     // the color theme to use ('light' or 'dark')
       Colorifier.Options.gutter = true;        // show/hide the gutter
-    });
 
-You also can initialize colorifier at any moment with the `Colorifier.initialize()` call
+      Colorifier.initialize();                 // reinitializing with new settings
+    });
 
 
 ## Copyright And License

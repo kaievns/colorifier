@@ -48,7 +48,8 @@ div.colorifier
     overflow: hidden
     max-width: 90%
 
-  // default color scheme
+
+  // light (default) color scheme
 
   &.light
     color:        rgba(0,0,0,0.8)
@@ -70,7 +71,7 @@ div.colorifier
       color: #880
 
     span.integer
-      color: rgb(0,0,255)
+      color: #00f
 
     span.float
       color: rgb(176,42,42)
@@ -97,3 +98,52 @@ div.colorifier
 
     span.property
       color: #048
+
+  // dark color scheme
+
+  &.dark
+    color:        rgba(255,255,255,0.7)
+    background:   rgba(0,0,0,0.6)
+    border-color: rgba(255,255,255,0.1)
+
+    .gutter
+      border-color: rgba(80,0,0,0.4)
+      background:   rgba(0,0,0,0.4)
+
+    span.comment
+      color: rgba(255,255,255,0.4)
+
+    span.string
+      color: #4b4
+
+    span.regexp
+      color: #bb4
+
+    span.integer
+      color: #00e
+
+    span.float
+      color: rgb(176,42,42)
+
+    span.keyword
+      font-weight: bold
+      color:       #b4b
+
+    span.object
+      color:       #808
+      font-weight: bold
+
+    span.boolean
+      color: rgb(176,42,42)
+
+    span.unit
+      color: #4bb
+
+    span.attribute
+      color: #bb4
+
+    span.method
+      color: #44b
+
+    span.property
+      color: #48b

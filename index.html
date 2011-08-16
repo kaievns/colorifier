@@ -5,13 +5,45 @@
     <link href="/shared.css" rel="stylesheet" type="text/css" />
     <script src="/core.js"></script>
     <script type="text/javascript">
-      Lovely(["colorifier"], function() {
+      Lovely(["colorifier"], function(Colorifier) {
+        var $     = Lovely.module('dom');
+        var theme = document.location.href.split('?')[1];
+        if (theme) {
+          Colorifier.Options.theme = theme;
+          Colorifier.initialize();
 
+          $(document.documentElement).addClass(theme);
+        }
+        $('#theme-switch').value(theme);
+        $('#theme-switch').on('change', function() {
+          document.location = document.location.href.split('?')[0] + '?' + this.value();
+        });
       });
     </script>
+    <style type="text/css">
+      html.dark {
+        background: #000;
+      }
+      html.dark body {
+        background: #222;
+        color:      white;
+      }
+      html.dark h1, html.dark h2 {
+        color: rgba(255,255,255,0.6);
+      }
+      #theme-switch {
+        float: right;
+        margin-top: .75em;
+      }
+    </style>
   </head>
   <body>
-    <h1>Colorifier Demo</h1>
+    <h1>Colorifier Demo
+      <select id="theme-switch">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+      </select>
+    </h1>
 
     <h2>JavaScript</h2>
 <pre data-lang="javascript">
