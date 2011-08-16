@@ -1,5 +1,6 @@
 2011-08-16 Nikolay Nemshilov
 
+  * HTML highlighter fix for empty `SCRIPT` tags
   * Rename `colorifer` -> `colorifier`
 
 2011-08-11 Nikolay Nemshilov

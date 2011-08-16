@@ -1,9 +1,9 @@
 #
-# HTML highlighter
+# HTML/XML highlighter
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
-Colorifier.html = new Class Colorifier,
+Colorifier.html = Colorifier.xml = new Class Colorifier,
   comments: "&lt;!-- --&gt;"
 
   paint: (text)->
@@ -24,7 +24,7 @@ Colorifier.html = new Class Colorifier,
     js     = new Colorifier.js()
     css    = new Colorifier.css()
 
-    text = text.replace /(&lt;script.*?&gt;)([\s\S]+?)(&lt;\/script&gt;)/ig, (m, _1, _2, _3)->
+    text = text.replace /(&lt;script.*?&gt;)([\s\S]*?)(&lt;\/script&gt;)/ig, (m, _1, _2, _3)->
       tokens.push(js.paint(_2))
       "#{_1}___dummy_#{tokens.length}___#{_3}"
 
