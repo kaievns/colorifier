@@ -1,5 +1,6 @@
 2011-08-16 Nikolay Nemshilov
 
+  * Default stylesheet adjsutments
   * FF support fix
   * HTML highlighter fix for empty `SCRIPT` tags
   * Rename `colorifer` -> `colorifier`
