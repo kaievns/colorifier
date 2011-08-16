@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
-Colorifer.coffee = Colorifer.coffeescript = new Class Colorifer,
+Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
 
   comments: '#'
   keywords: "function,return,for,if,else,while,do,throw,try,catch,instanceof,class,extends,in,of,where,super"

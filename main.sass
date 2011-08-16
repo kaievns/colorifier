@@ -1,12 +1,17 @@
 //
-// Colorifer main sass file
+// Colorifier main sass file
 //
-// Here should be your HTML structure
+// <div class="colorifier">
+//   <div class="gutter">1<br>2<br>3<br>...</div>
+//   <div class="code">
+//     original <PRE> tag in here
+//   </div>
+// </div>
 //
 // Copyright (C) 2011 Nikolay Nemshilov
 //
 
-div.colorifer, div.colorifer *
+div.colorifier, div.colorifier *
   display:    inline
   margin:     0
   padding:    0
@@ -20,7 +25,7 @@ div.colorifer, div.colorifer *
   right:      auto
   bottom:     auto
 
-div.colorifer
+div.colorifier
   display:    block
   position:   relative
   border: 1px solid rgba(0,0,0,0.1)

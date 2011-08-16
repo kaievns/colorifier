@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
-Colorifer.html = new Class Colorifer,
+Colorifier.html = new Class Colorifier,
   comments: "&lt;!-- --&gt;"
 
   paint: (text)->
@@ -21,8 +21,8 @@ Colorifer.html = new Class Colorifer,
     @___ or= []
     tokens = @___
 
-    js     = new Colorifer.js()
-    css    = new Colorifer.css()
+    js     = new Colorifier.js()
+    css    = new Colorifier.css()
 
     text = text.replace /(&lt;script.*?&gt;)([\s\S]+?)(&lt;\/script&gt;)/ig, (m, _1, _2, _3)->
       tokens.push(js.paint(_2))

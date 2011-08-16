@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
-Colorifer.css = Colorifer.sass = new Class Colorifer,
+Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
 
   comments: "/* */"
   booleans: "collapse,solid,dotted,dashed,none,auto,url,any,block,normal,"+

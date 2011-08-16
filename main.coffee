@@ -1,5 +1,5 @@
 #
-# Colorifer main file
+# Colorifier main file
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
@@ -18,14 +18,14 @@ escape = (str)->
   str.replace(/([.*+?\^=!:${}()|\[\]\/\\])/g, '\\$1')
 
 # glue in your files
-include 'src/colorifer'
+include 'src/colorifier'
 include 'src/lang/javascript'
 include 'src/lang/css'
 include 'src/lang/html'
 include 'src/lang/coffeescript'
 
-$(Colorifer.initialize); # kick in when page's loaded
+$(Colorifier.initialize); # kick in when page's loaded
 
 # export your objects in the module
-exports = ext Colorifer,
+exports = ext Colorifier,
   version: '%{version}'

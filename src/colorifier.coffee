@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2011 Nikolay Nemshilov
 #
-class Colorifer extends Element
+class Colorifier extends Element
   extend:
     # Default options
     Options:
@@ -14,9 +14,9 @@ class Colorifer extends Element
 
     # mass-initializer
     initialize: ()->
-      $("#{Colorifer.Options.tag}[#{Colorifer.Options.attr}]").forEach (element)->
-        if lang = element.attr(Colorifer.Options.attr)
-          if color = Colorifer[lang]
+      $("#{Colorifier.Options.tag}[#{Colorifier.Options.attr}]").forEach (element)->
+        if lang = element.attr(Colorifier.Options.attr)
+          if color = Colorifier[lang]
             if !element._color
               element._color = new color(element);
       return #
@@ -34,12 +34,12 @@ class Colorifer extends Element
   # Default constructor
   #
   # @param {dom.Element}
-  # @return {Colorifer} new
+  # @return {Colorifier} new
   #
   constructor: (element)->
     return @ unless element
 
-    super 'div', class: 'colorifer'
+    super 'div', class: 'colorifier'
 
     text = element.html()
     text = text.replace(/</g, '&lt;')
@@ -51,12 +51,12 @@ class Colorifer extends Element
     @style(element.style("font-family font-size font-weight"))
     @insertTo(element, 'before')
 
-    if Colorifer.Options.gutter
+    if Colorifier.Options.gutter
       nums = (i for line, i in text.split("\n"))
       @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
 
     @insert(new Element('div', class: 'code').insert(element))
-    @addClass(Colorifer.Options.scheme)
+    @addClass(Colorifier.Options.scheme)
 
 
 
