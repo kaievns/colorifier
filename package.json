@@ -1,11 +1,11 @@
 {
   "name":        "colorifier",
-  "version":     "1.1.0",
+  "version":     "1.1.1",
   "description": "Code highlighting script",
   "author":      "Nikolay Nemshilov",
   "license":     "MIT",
   "home_url":    "https://github.com/MadRabbit/colorifier",
   "dependencies": {
-    "dom": "1.0.0"
+    "dom": "1.0.2"
   }
 }

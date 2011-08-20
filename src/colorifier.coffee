@@ -48,7 +48,7 @@ class Colorifier extends Element
 
     @ref = element.html(this.paint(text))
 
-    @style(element.style("font-family font-size font-weight"))
+    @style(element.style("font-family,font-size,font-weight"))
     @insertTo(element, 'before')
 
     if Colorifier.Options.gutter
