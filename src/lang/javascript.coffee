@@ -10,7 +10,7 @@ Colorifier.js = Colorifier.javascript = new Class Colorifier,
   objects:  "var,new,this,self"
   booleans: "true,false,null,undefined"
 
-  paing: (text)->
+  paint: (text)->
     @$super text, (text)->
       text.replace /(^|[^a-z0-9_])([a-z0-9_]+)(\s*:)/ig, (m, _1, _2, _3)->
         "#{_1}<span class=\"attribute\">#{_2}</span>#{_3}"

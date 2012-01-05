@@ -16,9 +16,9 @@ class Colorifier extends Element
     initialize: ()->
       $("#{Colorifier.Options.tag}[#{Colorifier.Options.attr}]").forEach (element)->
         if lang = element.attr(Colorifier.Options.attr)
-          if color = Colorifier[lang]
-            color = element.colorifier or (element.colorifier = new color(element))
-            color.addClass(Colorifier.Options.theme)
+          color = Colorifier[lang] || Colorifier.unsupported
+          color = element.colorifier or (element.colorifier = new color(element))
+          color.addClass(Colorifier.Options.theme)
       return #
 
 
