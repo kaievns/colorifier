@@ -45,5 +45,5 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
 
   _colors: (text)->
     @_prepare(text, [
-      [/(.)(#(([abcdef0-9]{3})|([abcdef0-9]{6})))/g, "regexp", "$1 "]
+      [/(.)(#(([abcdef0-9]{6})|([abcdef0-9]{3})))/g, "regexp", "$1 "]
     ])
