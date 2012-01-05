@@ -1,3 +1,11 @@
+2012-01-05 Nikolay Nemshilov
+
+  * Version 1.1.2
+  * Unsupported languages fallback support
+  * CSS highlighter fix
+  * Upgrading to dom-1.2.0
+
+
 2011-08-16 Nikolay Nemshilov
 
   * Version 1.1.0
