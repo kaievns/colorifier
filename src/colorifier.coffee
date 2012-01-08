@@ -30,6 +30,9 @@ class Colorifier extends Element
   booleans: ""
   regexps:  [/([^\*\\\/;])(\/[^\*\/][^\n]*?[^\*\n\\](?!\\\/)\/)/] # default POSIX style regexps
 
+  styles2copy: "font-family,font-size,font-weight" +
+    ",margin-top,margin-left,margin-right,margin-bottom"
+
   #
   # Default constructor
   #
@@ -48,7 +51,7 @@ class Colorifier extends Element
 
     @ref = element.html(this.paint(text))
 
-    @style(element.style("font-family,font-size,font-weight"))
+    @style(element.style(@styles2copy))
     @insertTo(element, 'before')
 
     if Colorifier.Options.gutter
