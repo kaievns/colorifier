@@ -1,7 +1,7 @@
 #
 # Project's main unit
 #
-# Copyright (C) 2011 Nikolay Nemshilov
+# Copyright (C) 2011-2012 Nikolay Nemshilov
 #
 class Colorifier extends Element
   extend:
@@ -52,13 +52,13 @@ class Colorifier extends Element
     @ref = element.html(this.paint(text))
 
     @style(element.style(@styles2copy))
-    @insertTo(element, 'before')
+    @insertTo(element.hide(), 'before')
 
     if Colorifier.Options.gutter
       nums = (i for line, i in text.split("\n"))
       @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
 
-    @insert(new Element('div', class: 'code').insert(element))
+    @insert(new Element('div', class: 'code').html(element.html()))
     @addClass(Colorifier.Options.theme)
 
 
