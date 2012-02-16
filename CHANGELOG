@@ -1,8 +1,13 @@
 2012-02-16 Nikolay Nemshilov
 
+  * Version 1.1.5
+  * Got rid of the PRE tag in the `.code` block
+  * Style adjustments
+
+2012-02-15 Nikolay Nemshilov
+
   * Version 1.1.4
   * Horizontal scrolling fix
-  * Got rid of the PRE tag in the `.code` block
 
 2012-01-08 Nikolay Nemshilov
 
