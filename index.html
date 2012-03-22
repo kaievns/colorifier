@@ -158,7 +158,20 @@ private
     'it did some unnecessary stuff and was commented out'
   end
 =end
+end
 
+def User
+  include Mongoid::Document
+
+  has_many   :posts
+  belongs_to :group
+
+  validates_presence_of   :name
+  validates_uniqueness_of :name
+
+  attr_accessible :name
+
+  scope :active, where(status: 'active')
 end
 </pre>
 
