@@ -24,6 +24,7 @@ include 'src/lang/css'
 include 'src/lang/html'
 include 'src/lang/coffeescript'
 include 'src/lang/ruby'
+include 'src/lang/erb'
 include 'src/lang/unsupported'
 
 $(Colorifier.initialize); # kick in when page's loaded
