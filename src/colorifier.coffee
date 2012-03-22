@@ -94,7 +94,7 @@ class Colorifier extends Element
       chunks = token.split(' ')
 
       if chunks[1]
-        regex = new RegExp("(.?)(#{escape(chunks[0])}.*?#{escape(chunks[1])})(.*)", "mg")
+        regex = new RegExp("(.?)(#{escape(chunks[0])}[\\s\\S]*?#{escape(chunks[1])})(.*)", "mg")
       else
         regex = new RegExp("(.?)(#{escape(chunks[0])}.*?)(\n)", "g")
 

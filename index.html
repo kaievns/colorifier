@@ -118,6 +118,50 @@ class Boo extends Hoo
 
 </pre>
 
+    <h2>Ruby/Rails</h2>
+<pre data-lang="ruby">
+#
+# Some controller, by some osom dude
+#
+class ApplicationController < ActionController::Base
+
+  before_filter :require_login
+
+  def index
+    @stuff = Stuff.find(:all)
+
+    respond_to do |f|
+      f.html # just rendering the index
+      f.json { render json: @stuff }
+    end
+  end
+
+  def create
+    @stuff = Stuff.new(params[:stuff])
+
+    if @stuff.save
+      flash[:notice] = "Your stuff was successfully created"
+      redirect_to @stuff
+    else
+      render 'new'
+    end
+  end
+
+private
+
+  def require_login
+    raise AccessDeniend if !logged_in?
+  end
+
+=begin
+  def some_commented_method
+    'it did some unnecessary stuff and was commented out'
+  end
+=end
+
+end
+</pre>
+
     <h2>Unsupported Language</h2>
 <pre data-lang="unsupportedlanguage">
 class SomeClass
