@@ -1,11 +1,11 @@
 #
 # The CSS/SASS highlighter
 #
-# Copyright (C) 2011 Nikolay Nemshilov
+# Copyright (C) 2011-2012 Nikolay Nemshilov
 #
 Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
 
-  comments: "/* */"
+  comments: "/* */,//"
   booleans: "collapse,solid,dotted,dashed,none,auto,url,any,block,normal,"+
             "italic,bold,unerline,inherit,inline,inline-block,inset,outset,"+
             "hidden,visible,no-repeat,center,left,top,bottom,right,rgb,rgba"
@@ -26,15 +26,16 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
   # painting the css-property names
   _properties: (text)->
     @_prepare(text, [
-      [/([^a-z\-])([a-z\-]+?)(\s*:)/g, "attribute", "$1 $3"]
+      [/([^a-z\-])([a-z\-]+?)(\s*:)/ig, "attribute", "$1 $3"]
     ])
 
   # painting the css-selectors
   _selectors: (text)->
     @_prepare(text, [
-      [/([^a-z_\-0-9\.])([a-z]+?)(?![a-z_\-0-9\.=\^|])/ig, "keyword", "$1 "]
-      [/(^|.)(#[a-z\-0-9\_]+)/ig,  "unit", "$1 "]
-      [/(^|.)(\.[a-z\-0-9\_]+)/ig, "method", "$1 "]
+      [/([^a-z_\-0-9\.&\:#])([a-z]+?)(?![a-z_\-0-9=\^|])/ig, "keyword", "$1 "]
+      [/(^|.)(#[a-z\-0-9\_]+)/ig,  "property", "$1 "]
+      [/(^|.)(\.[a-z\-0-9\_]+)/ig, "property", "$1 "]
+      [/([^\s])(:[a-z\-]+?)(?![a-z_\-0-9])/ig, "boolean", "$1 "]
     ])
 
   # painting the numbers and all sorts of sizes
@@ -45,5 +46,5 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
 
   _colors: (text)->
     @_prepare(text, [
-      [/(.)(#(([abcdef0-9]{6})|([abcdef0-9]{3})))/g, "regexp", "$1 "]
+      [/(.)(#(([abcdef0-9]{6})|([abcdef0-9]{3})))/ig, "unit", "$1 "]
     ])
