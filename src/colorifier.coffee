@@ -152,7 +152,7 @@ class Colorifier extends Element
     @_prepare(text, [
       [/([^a-zA-Z0-9_]|^)([A-Z][a-zA-Z_0-9]+)(?![a-zA-Z0-9_])/g, "unit",      '$1 ']
       [/(\.)([a-z_$][a-z0-9_]*)(?![a-z0-9_\(])/ig,               "attribute", '$1 ']
-      [/(\.)([a-z_$][a-z0-9_]*)(\()/i,                           "method",    '$1 $3']
+      [/(\.)([a-z_$][a-z0-9_]*)(\()/ig,                          "method",    '$1 $3']
     ])
 
 
