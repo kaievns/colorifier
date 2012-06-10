@@ -1,3 +1,9 @@
+2012-06-10 Nikolay Nemshilov
+
+  * Version 1.2.2
+  * Closing bug #1 with multiple method calls highlighting
+  * Closing bug #2 with an inlined comment at the end of a code block
+
 2012-02-23 Nikolay Nemshilov
 
   * Version 1.2.1
