@@ -23,13 +23,23 @@ There are a bunch of options you might change if you like
       Colorifier.Options.attr   = 'data-lang'; // the attribute with language
       Colorifier.Options.theme  = 'light';     // the color theme to use ('light' or 'dark')
       Colorifier.Options.gutter = true;        // show/hide the gutter
+      Colorifier.Options.trim   = false;       // trim trailing spaces or not
 
       Colorifier.initialize();                 // reinitializing with new settings
     });
+
+You also can use per unit configuration via the `data-colorifier` attributes
+
+    :html
+    <pre data-lang="ruby" data-colorifier='{"gutter": false}'>
+      # some code in here
+    </pre>
+
+__NOTE__ the value of the attribute should be a properly formatted JSON data
 
 
 ## Copyright And License
 
 This project is released under the terms of the MIT license
 
-Copyright (C) 2011 Nikolay Nemshilov
+Copyright (C) 2011-2012 Nikolay Nemshilov

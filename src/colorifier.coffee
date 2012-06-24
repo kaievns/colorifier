@@ -33,7 +33,7 @@ class Colorifier extends Element
   booleans: ""
   regexps:  [/([^\*\\\/;])(\/[^\*\/][^\n]*?[^\*\n\\](?!\\\/)\/)/] # default POSIX style regexps
 
-  styles2copy: "font-family,font-size,font-weight" +
+  styles2copy: "font-family,font-size,font-weight,line-height," +
     ",margin-top,margin-left,margin-right,margin-bottom"
 
   #
