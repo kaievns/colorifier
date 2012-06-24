@@ -33,7 +33,7 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
   # painting the css-selectors
   _selectors: (text)->
     @_prepare(text, [
-      [/([^a-z_\-0-9\.&\:#])([a-z]+?)(?![a-z_\-0-9=\^|])/ig, "keyword", "$1 "]
+      [/(^|[^a-z_\-0-9\.&\:#])([a-z]+?)(?![a-z_\-0-9=\^|])/ig, "keyword", "$1 "]
       [/(^|.)(#[a-z\-0-9\_]+)/ig,  "property", "$1 "]
       [/(^|.)(\.[a-z\-0-9\_]+)/ig, "property", "$1 "]
       [/([^\s])(:[a-z\-]+?)(?![a-z_\-0-9])/ig, "boolean", "$1 "]
