@@ -4,6 +4,8 @@
 # Copyright (C) 2011-2012 Nikolay Nemshilov
 #
 class Colorifier extends Element
+  include: core.Options
+
   extend:
     # Default options
     Options:
@@ -54,12 +56,14 @@ class Colorifier extends Element
     @style(element.style(@styles2copy))
     @insertTo(element.hide(), 'before')
 
-    if Colorifier.Options.gutter
+    @setOptions(element.data('colorifier'))
+
+    if @options.gutter
       nums = (i for line, i in text.split("\n"))
       @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
 
     @insert(new Element('div', class: 'code').html(element.html()))
-    @addClass(Colorifier.Options.theme)
+    @addClass(@options.theme)
 
 
 
