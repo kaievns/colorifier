@@ -7,7 +7,6 @@ Colorifier.erb = new Class Colorifier.html,
 
   paint: (text)->
     @$super text, (text)->
-      console.log(text)
       @_ruby(text)
 
   _ruby: (text)->
