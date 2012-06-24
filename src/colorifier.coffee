@@ -31,7 +31,7 @@ class Colorifier extends Element
   keywords: ""
   objects:  ""
   booleans: ""
-  regexps:  [/([^\*\\\/;])(\/[^\*\/][^\n]*?[^\*\n\\](?!\\\/)\/)/] # default POSIX style regexps
+  regexps:  [/([^\*\\\/;])(\/[^\*\/][^\n]*?[^\*\n\\](?!\\\/)\/[a-z]*)/g] # default POSIX style regexps
 
   styles2copy: "font-family,font-size,font-weight,line-height," +
     ",margin-top,margin-left,margin-right,margin-bottom"
@@ -76,9 +76,9 @@ class Colorifier extends Element
   # @return {String} painted
   #
   paint: (text, callback)->
-    text = @_comments(text)
     text = @_strings(text)
     text = @_regexps(text)
+    text = @_comments(text)
     text = @_numbers(text)
     text = @_keywords(text)
     text = @_methods(text)
