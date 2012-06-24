@@ -8,7 +8,8 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
   comments: "/* */,//"
   booleans: "collapse,solid,dotted,dashed,none,auto,url,any,block,normal,"+
             "italic,bold,unerline,inherit,inline,inline-block,inset,outset,"+
-            "hidden,visible,no-repeat,center,left,top,bottom,right,rgb,rgba"
+            "hidden,visible,no-repeat,center,left,top,bottom,right,rgb,rgba,"+
+            "both,absolute,relative,fixed,static"
 
   paint: (text)->
     text = @_comments(text)
