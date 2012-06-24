@@ -42,7 +42,7 @@ Colorifier.css = Colorifier.sass = Colorifier.scss = new Class Colorifier,
   # painting the numbers and all sorts of sizes
   _numbers: (text)->
     @_prepare(text, [
-      [/([^'"\d\w\.])(\-?[0-9]*\.?[0-9]+[a-z]*)(?!['"\d\w\.])/g, "integer",   "$1 "]
+      [/([^'"\d\w\.])(\-?[0-9]*\.?[0-9]+[a-z%]*)(?!['"\d\w\.])/g, "integer",   "$1 "]
     ])
 
   _colors: (text)->
