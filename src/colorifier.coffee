@@ -13,6 +13,7 @@ class Colorifier extends Element
       attr:   'data-lang'  # attribute that keeps the language name
       theme:  'light'      # color theme name
       gutter: true         # show or not the gutter
+      trim:   true         # automatically trim trailing spaces
 
     # mass-initializer
     initialize: ()->
@@ -44,19 +45,19 @@ class Colorifier extends Element
   constructor: (element)->
     return @ unless element
 
+    @setOptions(element.data('colorifier'))
+
     super 'div', class: 'colorifier'
 
     text = element.html()
     text = text.replace(/</g, '&lt;')
     text = text.replace(/>/g, '&gt;')
-    text = text.replace(/(^\s+)|(\s+$)/g, '')
+    text = text.replace(/(^\s*\n)|(\s+$)/g, '') if @options.trim
 
     @ref = element.html(this.paint(text))
 
     @style(element.style(@styles2copy))
     @insertTo(element.hide(), 'before')
-
-    @setOptions(element.data('colorifier'))
 
     if @options.gutter
       nums = (i for line, i in text.split("\n"))
