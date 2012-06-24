@@ -12,7 +12,7 @@ Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
 
   paint: (text)->
     @$super text, (text)->
-      text = text.replace /(^|.)(@[a-z0-9_]+)/ig, (m, _1, _2)->
+      text = text.replace /(^|.)(@[a-z0-9_]*)/ig, (m, _1, _2)->
         "#{_1}<span class=\"property\">#{_2}</span>"
 
       text.replace /(^|[^a-z0-9_])([a-z0-9_]+)(\s*:)/ig, (m, _1, _2, _3)->
