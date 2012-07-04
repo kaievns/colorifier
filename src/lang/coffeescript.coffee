@@ -9,6 +9,7 @@ Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
   keywords: "function,return,for,if,else,while,do,throw,try,catch,instanceof,class,"+
             "extends,in,of,where,super,is,isnt,until,unless,then,or,and,switch,when"
   objects:  "new,this,self"
+  booleans: "true,false,null,undefined,typeof"
 
   paint: (text)->
     @$super text, (text)->
