@@ -1,13 +1,14 @@
 #
 # The coffee script highlighter
 #
-# Copyright (C) 2011 Nikolay Nemshilov
+# Copyright (C) 2011-2012 Nikolay Nemshilov
 #
 Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
 
   comments: '#'
   keywords: "function,return,for,if,else,while,do,throw,try,catch,instanceof,class,"+
-            "extends,in,of,where,super,is,isnt,until,unless,then,or,and,switch,when"
+            "extends,in,of,where,super,is,isnt,until,unless,then,or,and,switch,when,"+
+            "break,continue"
   objects:  "new,this,self"
   booleans: "true,false,null,undefined,typeof"
 
