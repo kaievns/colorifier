@@ -37,7 +37,7 @@ Colorifier.html = Colorifier.xml = new Class Colorifier,
   _tags: (text)->
     @_prepare(text, [
       [/(&lt;[\/]*)([a-z]+)/ig, "keyword", "$1 "],
-      [/(\s+)([a-z]+)(=)/ig, "float", "$1 $3"]
+      [/(\s+)([a-z_\-]+)(=)/ig, "float", "$1 $3"]
     ])
 
 js     = new Colorifier.js()
