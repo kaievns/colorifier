@@ -20,8 +20,8 @@ class Colorifier extends Element
       $("#{Colorifier.Options.tag}[#{Colorifier.Options.attr}]").forEach (element)->
         if lang = element.attr(Colorifier.Options.attr)
           color = Colorifier[lang] || Colorifier.unsupported
-          color = element.colorifier or (element.colorifier = new color(element))
-          color.addClass(Colorifier.Options.theme)
+          color = element.colorifier or (element.colorifier = new color(element, lang))
+
       return #
 
 
@@ -42,7 +42,7 @@ class Colorifier extends Element
   # @param {dom.Element}
   # @return {Colorifier} new
   #
-  constructor: (element)->
+  constructor: (element, lang)->
     return @ unless element
 
     @setOptions(element.data('colorifier'))
@@ -64,7 +64,7 @@ class Colorifier extends Element
       @insert(new Element('div', class: 'gutter', html: nums.join('<br/>')))
 
     @insert(new Element('div', class: 'code').html(element.html()))
-    @addClass(@options.theme)
+    @addClass(@options.theme).data(lang: lang)
 
 
 
@@ -92,6 +92,8 @@ class Colorifier extends Element
 
   # painting the comments
   _comments: (text, callback)->
+    return text if !@comments
+
     replacements = []
 
     # replacing the comments with dummies
@@ -109,6 +111,8 @@ class Colorifier extends Element
 
   # painting the strings
   _strings: (text, callback)->
+    return text if !@strings
+
     replacements = []
 
     for token in @strings.split(',')
@@ -124,6 +128,8 @@ class Colorifier extends Element
 
   # painting the regexps
   _regexps: (text, callback)->
+    return text if !@regexps
+
     replacements = []
 
     for re in @regexps
@@ -143,9 +149,7 @@ class Colorifier extends Element
     reps = []
 
     for name in ['keyword', 'object', 'boolean']
-      regexp = @[name + "s"].replace(/,/g, '|')
-
-      if regexp # if it's not empty
+      if regexp = @[name + "s"].replace(/,/g, '|')
         regexp = new RegExp("([^a-zA-Z0-9_]|^)(#{regexp})(?![a-zA-Z0-9_])", "g")
 
         reps.push([regexp, name, "$1 "])
