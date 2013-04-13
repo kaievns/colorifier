@@ -4,6 +4,7 @@
   * Bash/Shell support
   * The elements get the language name on them so they could be manipulated later
   * CoffeeScript multi-lined strings highlighting support
+  * HTML highlighting fix for dashed attribute names support
 
 2012-07-07 Nikolay Nemshilov
 

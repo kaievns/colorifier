@@ -188,12 +188,14 @@ end
 
     <h2>ERB</h2>
 <pre data-lang="erb">
-&lt;div id="posts"&gt;
-  &lt;% @posts.each do |post| %&gt;
-    &lt;%= div_for post do %&gt;
-      &lt;div class="title"&gt;&lt;%= link_to post.title, post %&gt;&lt;/div&gt;
-      &lt;div class="body">&lt;%= simple_format post.body %&gt;&lt;/div&gt;
-    &lt;% end %&gt;
+&lt;div class="comment"&gt;
+  &lt;p class="text"&gt;&lt;%= @comment.text %&gt;&lt;/p&gt;
+
+  &lt;% if admin? or @comment.user == current_user %&gt;
+    &lt;p class="controls"&gt;
+      &lt;%= link_to "edit", edit_comment_path(@comment) %&gt;
+      &lt;%= link_to "delete", @comment, method: :delete %&gt;
+    &lt;/p&gt;
   &lt;% end %&gt;
 &lt;/div&gt;
 </pre>
