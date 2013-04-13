@@ -5,7 +5,7 @@
 #
 Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
 
-  comments: '#'
+  comments: "#"
   keywords: "function,return,for,if,else,while,do,throw,try,catch,instanceof,class,"+
             "extends,in,of,where,super,is,isnt,until,unless,then,or,and,switch,when,"+
             "break,continue"
@@ -19,3 +19,5 @@ Colorifier.coffee = Colorifier.coffeescript = new Class Colorifier,
 
       text.replace /(^|[^a-z0-9_])([a-z0-9_]+)(\s*:)/ig, (m, _1, _2, _3)->
         "#{_1}<span class=\"attribute\">#{_2}</span>#{_3}"
+
+Colorifier.coffee::strings = "\"\"\",\",''','"

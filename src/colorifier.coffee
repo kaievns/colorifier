@@ -118,7 +118,7 @@ class Colorifier extends Element
     for token in @strings.split(',')
       regexs = [
         new RegExp("([^\\\\])((#{escape(token)})(\\3))", 'mg')
-        new RegExp("([^\\\\])((#{escape(token)}).*?[^\\\\](\\3))", "mg")
+        new RegExp("([^\\\\])((#{escape(token)})(.|\n)*?[^\\\\](\\3))", "mg")
       ]
 
       for re in regexs
